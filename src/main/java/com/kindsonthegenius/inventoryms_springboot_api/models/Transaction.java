@@ -1,10 +1,9 @@
 package com.kindsonthegenius.inventoryms_springboot_api.models;
 
-import com.kindsonthegenius.inventoryms_springboot_api.security.Auditable;
+import com.kindsonthegenius.inventoryms_springboot_api.security.models.Auditable;
 import lombok.Data;
 
 import jakarta.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "transaction")

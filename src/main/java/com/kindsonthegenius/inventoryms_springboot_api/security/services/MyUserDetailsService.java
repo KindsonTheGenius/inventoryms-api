@@ -1,7 +1,8 @@
-package com.kindsonthegenius.inventoryms_springboot_api.security;
+package com.kindsonthegenius.inventoryms_springboot_api.security.services;
 
 import com.kindsonthegenius.inventoryms_springboot_api.models.User;
 import com.kindsonthegenius.inventoryms_springboot_api.repositories.UserRepository;
+import com.kindsonthegenius.inventoryms_springboot_api.security.models.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

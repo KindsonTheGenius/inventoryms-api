@@ -1,4 +1,4 @@
-package com.kindsonthegenius.inventoryms_springboot_api.security;
+package com.kindsonthegenius.inventoryms_springboot_api.security.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,13 +9,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Role extends Auditable<String> {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@NoArgsConstructor
+@Data
+public class LoginRequest {
     @Id
-    private Integer id;
-    private String description;
-    private String details;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String username;
+    private String password;
 }

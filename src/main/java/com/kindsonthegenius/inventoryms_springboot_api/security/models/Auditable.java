@@ -1,4 +1,4 @@
-package com.kindsonthegenius.inventoryms_springboot_api.security;
+package com.kindsonthegenius.inventoryms_springboot_api.security.models;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;

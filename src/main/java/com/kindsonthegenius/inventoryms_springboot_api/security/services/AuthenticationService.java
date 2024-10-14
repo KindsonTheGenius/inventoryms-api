@@ -1,4 +1,4 @@
-package com.kindsonthegenius.inventoryms_springboot_api.security;
+package com.kindsonthegenius.inventoryms_springboot_api.security.services;
 
 
 import com.kindsonthegenius.inventoryms_springboot_api.models.User;

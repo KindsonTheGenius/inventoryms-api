@@ -1,4 +1,4 @@
-package com.kindsonthegenius.inventoryms_springboot_api.security;
+package com.kindsonthegenius.inventoryms_springboot_api.security.models;
 
 import com.kindsonthegenius.inventoryms_springboot_api.models.User;
 import org.springframework.security.core.GrantedAuthority;

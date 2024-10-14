@@ -1,5 +1,7 @@
-package com.kindsonthegenius.inventoryms_springboot_api.security;
+package com.kindsonthegenius.inventoryms_springboot_api.security.controllers;
 
+import com.kindsonthegenius.inventoryms_springboot_api.security.services.AuthenticationService;
+import com.kindsonthegenius.inventoryms_springboot_api.security.models.LoginRequest;
 import com.kindsonthegenius.inventoryms_springboot_api.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
@@ -13,7 +15,7 @@ public class AuthController {
 
     private final UserService userService;
 
-    private final  AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
 
     public AuthController(UserService userService, AuthenticationService authenticationService) {
         this.userService = userService;

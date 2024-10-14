@@ -1,9 +1,8 @@
 package com.kindsonthegenius.inventoryms_springboot_api.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.kindsonthegenius.inventoryms_springboot_api.security.Auditable;
-import com.kindsonthegenius.inventoryms_springboot_api.security.Role;
+import com.kindsonthegenius.inventoryms_springboot_api.security.models.Auditable;
+import com.kindsonthegenius.inventoryms_springboot_api.security.models.UserPrivilegeAssignment;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -66,14 +65,9 @@ public class User extends Auditable<String> {
     @Column(columnDefinition = "TEXT")
     private String profile;
 
+    @OneToMany(mappedBy = "user")
+    private List<UserPrivilegeAssignment> privileges;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")}
-    )
-    List<Role> roles;
 
     @ElementCollection
     @CollectionTable(name = "social_links", joinColumns = @JoinColumn(name = "user_id"))

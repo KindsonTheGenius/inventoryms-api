@@ -3,7 +3,7 @@ package com.kindsonthegenius.inventoryms_springboot_api.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.kindsonthegenius.inventoryms_springboot_api.security.Auditable;
+import com.kindsonthegenius.inventoryms_springboot_api.security.models.Auditable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
