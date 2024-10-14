@@ -11,4 +11,6 @@ public interface UserPrivilegeAssignmentRepository extends JpaRepository<UserPri
     public void deleteByUserid(Long userid);
 
     public List<UserPrivilegeAssignment> findByUserid(Long userid);
+
+    public void deleteByUseridAndPrivilegeId(Long userid, Long privilegeid);
 }

@@ -5,6 +5,7 @@ import com.kindsonthegenius.inventoryms_springboot_api.security.repositories.Pri
 import com.kindsonthegenius.inventoryms_springboot_api.security.services.RoleService;
 import com.kindsonthegenius.inventoryms_springboot_api.security.models.Role;
 import com.kindsonthegenius.inventoryms_springboot_api.services.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Transactional
 public class RoleController {
 
     private final PrivilegeRepository privilegeRepository;
@@ -31,7 +33,7 @@ public class RoleController {
     }
 
     @GetMapping("/role/{id}")
-    public Role getById(@PathVariable Integer id) {
+    public Role getById(@PathVariable Long id) {
         return roleService.findById(id);
     }
 
@@ -41,7 +43,7 @@ public class RoleController {
     }
 
     @DeleteMapping("/role/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         roleService.delete(id);
     }
 
@@ -50,6 +52,7 @@ public class RoleController {
         roleService.assignUserRole(userid, roleid);
     }
 
+    @Transactional
     @DeleteMapping("/role/{roleid}/unAssign/user/{userid}")
     public void unAssignUserRole(@PathVariable("roleid") Long roleid, @PathVariable("userid") Long userid) {
         roleService.unAssignUserRole(userid, roleid);

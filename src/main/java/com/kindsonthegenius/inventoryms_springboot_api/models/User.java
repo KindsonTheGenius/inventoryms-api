@@ -1,6 +1,8 @@
 package com.kindsonthegenius.inventoryms_springboot_api.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.kindsonthegenius.inventoryms_springboot_api.security.models.Auditable;
 import com.kindsonthegenius.inventoryms_springboot_api.security.models.UserPrivilegeAssignment;
 import jakarta.persistence.*;
@@ -15,6 +17,7 @@ import java.util.*;
         @UniqueConstraint(columnNames = "username")
 })
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User extends Auditable<String> {
 
     @Id
@@ -67,7 +70,6 @@ public class User extends Auditable<String> {
 
     @OneToMany(mappedBy = "user")
     private List<UserPrivilegeAssignment> privileges;
-
 
     @ElementCollection
     @CollectionTable(name = "social_links", joinColumns = @JoinColumn(name = "user_id"))

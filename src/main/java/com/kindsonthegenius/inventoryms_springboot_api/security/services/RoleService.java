@@ -7,12 +7,14 @@ import com.kindsonthegenius.inventoryms_springboot_api.security.models.UserPrivi
 import com.kindsonthegenius.inventoryms_springboot_api.security.repositories.PrivilegeRepository;
 import com.kindsonthegenius.inventoryms_springboot_api.security.repositories.RoleRepository;
 import com.kindsonthegenius.inventoryms_springboot_api.security.repositories.UserPrivilegeAssignmentRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class RoleService {
 
     private final RoleRepository roleRepository;
@@ -33,12 +35,12 @@ public class RoleService {
     }
 
     //Get Role By Id
-    public Role findById(int id) {
+    public Role findById(Long id) {
         return roleRepository.findById(id).orElse(null);
     }
 
     //Delete Role
-    public void delete(int id) {
+    public void delete(Long id) {
         roleRepository.deleteById(id);
     }
 
@@ -61,13 +63,10 @@ public class RoleService {
        assignmentRepository.saveAll(assignments);
     }
 
+    @Transactional
     public void unAssignUserRole(Long userid, Long roleid) {
         List<Privilege> privileges = privilegeRepository.findByRoleid(roleid);
-        List<UserPrivilegeAssignment> assignments  = privileges.stream()
-                .map(privilege -> new UserPrivilegeAssignment(userid, privilege.getId()))
-                .toList();
-
-        assignmentRepository.deleteAll(assignments);
+        privileges.forEach(privilege -> assignmentRepository.deleteByUseridAndPrivilegeId(userid, privilege.getId()));
     }
 
     public List<Privilege> getPrivilegesInRole(Long roleid) {
