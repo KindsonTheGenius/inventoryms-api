@@ -2,6 +2,7 @@ package com.kindsonthegenius.inventoryms_springboot_api.services;
 
 import com.kindsonthegenius.inventoryms_springboot_api.models.Order;
 import com.kindsonthegenius.inventoryms_springboot_api.models.OrderStats;
+import com.kindsonthegenius.inventoryms_springboot_api.repositories.ItemRepository;
 import com.kindsonthegenius.inventoryms_springboot_api.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
