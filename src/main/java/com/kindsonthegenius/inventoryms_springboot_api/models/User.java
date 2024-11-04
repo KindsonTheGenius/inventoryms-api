@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.kindsonthegenius.inventoryms_springboot_api.security.models.Auditable;
+import com.kindsonthegenius.inventoryms_springboot_api.security.models.SecureToken;
 import com.kindsonthegenius.inventoryms_springboot_api.security.models.UserPrivilegeAssignment;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -44,6 +45,12 @@ public class User extends Auditable<String> {
 
     private String imageUrl;
     private String occupation;
+
+    @OneToMany(mappedBy = "user")
+    private List<SecureToken> tokens;
+
+    private boolean accountVerified;
+    private boolean loginDisabled;
 
     @ManyToOne
     @JoinColumn(name = "locationid", insertable = false, updatable = false)
@@ -100,4 +107,15 @@ public class User extends Auditable<String> {
     @OneToMany(mappedBy = "user")
     @JsonManagedReference
     private List<Message> messages;
+
+    @Override
+    public String toString(){
+        return "User{" +
+                "id=" + id +
+                ", name='" + firstName + '\'' +
+                ", lastName'" + lastName + '\'' +
+                // Do not include privileges here to prevent recursion
+                '}';
+    }
+
 }

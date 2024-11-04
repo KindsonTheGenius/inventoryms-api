@@ -41,11 +41,11 @@ public class UserController {
         return userService.updateUser(user, id);
     }
 
-    @PostMapping("/users")
-    public ResponseEntity<User> addNew(@RequestBody() User user){
-        User newUser = userService.addNew(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
-    }
+//    @PostMapping("/users")
+//    public ResponseEntity<User> addNew(@RequestBody() User user){
+//        User newUser = userService.register(user);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+//    }
 
     @DeleteMapping("/user/{id}")
     public void deleteUser(@PathVariable("id") Long id){

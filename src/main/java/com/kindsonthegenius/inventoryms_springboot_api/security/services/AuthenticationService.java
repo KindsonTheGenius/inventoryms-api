@@ -22,6 +22,10 @@ public class AuthenticationService {
     public boolean authenticate(String username, String password) {
         User user = userRepository.findByUsername(username);
 
+        if(!user.isAccountVerified()) {
+            throw new BadCredentialsException("The account is not verified");
+        }
+
         if (!user.getUsername().equals(username)){
             throw new UsernameNotFoundException("User not found in the database");
         }
